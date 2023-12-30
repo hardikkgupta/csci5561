@@ -7,3 +7,16 @@ The primary goal of this course is to introduce students to computer vision -- h
 This list will numerate all the concepts learned in the course.
 
 Module 0: Introduction
+
+
+
+
+
+## Final Project
+My Final Project was on Counting Apples. 
+References:
+_Apple Counting using Convolutional Neural Networks_ by Nicolai Häni et al
+
+```diff
+- The project cannot be shared because other members are still working on that.
+```
