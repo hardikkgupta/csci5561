@@ -13,7 +13,7 @@ Module 0: Introduction
 
 
 ## Final Project
-My Final Project was on Counting Apples. <br>
+My Final Project was on Apples Detection and Segmentation <br>
 <br>
 **References**  <br>
 _Apple Counting using Convolutional Neural Networks_ by Nicolai Häni et al
