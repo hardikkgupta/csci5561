@@ -6,4 +6,4 @@
 - + 5 for attempting bonus question
 - I incurred a three point deduction in 2D FT pair 3, because vertical edges correspond to many horizontal frequencies
 ```
-Refer to the [README PDF file](https://github.com/hardikkgupta/csci5561/blob/main/hw2/README.pdf) here for reading the work behind it.
+Refer to the [README PDF file](https://github.com/hardikkgupta/csci5561/blob/main/hw3/README.pdf) here for reading the work behind it.
