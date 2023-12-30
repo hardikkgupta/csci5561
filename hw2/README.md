@@ -16,14 +16,17 @@ Given matches, you will compute a fundamental matrix to draw epipolar lines.
 **Input**: $pts1$ and $pts2$ are $n \times 2$ matrices that specify the correspondence. <br>
 **Output**: $F \in R^{3×3}$ is the fundamental matrix.
 
-<img width="1069" alt="Screenshot 2023-12-30 at 3 07 26 AM" src="https://github.com/hardikkgupta/csci5561/assets/40640596/f259dff2-37bc-465b-84e5-de5c9ef32857">
+- The **fundamental matrix** represents the geometric relationship between two images of a scene taken from different viewpoints.
+- **SVD** is a mathematical technique used to decompose a matrix into three simpler matrices: $A = U \sum V T$ . In the context of computer vision and the 8-point algorithm, SVD is often used to solve systems of linear equations and estimate the fundamental matrix.
+- **RANSAC** works by randomly sampling a minimal subset of the data, fitting the model to that subset, and then checking how well the model fits the rest of the data. This process is iterated to find the best model while ignoring outliers.
+- The **8-point algorithm** is a method used in computer vision and image processing for estimating the fundamental matrix between two views of a scene. It requires at least 8 corresponding points in the two images. The algorithm uses these point correspondences to set up a linear system, and the solution is obtained through Singular Value Decomposition (SVD).
 
-The **fundamental matrix** represents the geometric relationship between two images of a scene taken from different viewpoints.
-**SVD** is a mathematical technique used to decompose a matrix into three simpler matrices: $A = U \sum V T$ . In the context of computer vision and the 8-point algorithm, SVD is often used to solve systems of linear equations and estimate the fundamen- tal matrix.
-(c) RANSAC works by randomly sampling a minimal subset of the data, fitting the model to that subset, and then checking how well the model fits the rest of the data. This process is iterated to find the best model while ignoring outliers.
-(d) The 8-point algorithm is a method used in computer vision and image processing for estimating the fundamental matrix between two views of a scene. It requires at least 8 corresponding points in the two images. The algorithm uses these point correspondences to set up a linear system, and the solution is obtained through Singular Value Decomposition (SVD).
-The fundamental matrix is defined by the equation: xTFx = 0
-for any pair of matching points x ⇀↽ x’ in two images. In particular, writing x = (x, y, 1) and x’ = (x′, y′, 1). Given sufficiently many points,
-Af = (x′x,x′y,x′,y′x,y′y,y′,x,y,1)f = 0
-As written in Chapter 11, The least-squares solution for f is the singular vector corresponding to the smallest singular value of A, i.e. the last column of V in SVD. Rank - 2 is enforced by setting the smallest singular value to 0.
-compute_camera_pose computes poses (positions and orientations) in 3D space. The intrinsic matrix K includes information about the camera’s focal length, principal point.
+The fundamental matrix is defined by the equation: <br>
+$xTFx = 0$ <br>
+for any pair of matching points $x ⇿ x’$ in two images. In particular, writing $x = (x, y, 1)$ and $x’ = (x′, y′, 1)$. Given sufficiently many points,
+$Af = (x′x,x′y,x′,y′x,y′y,y′,x,y,1)f = 0$
+As written in Chapter 11, The least-squares solution for f is the singular vector corresponding to the smallest singular value of $A$, i.e. the last column of $V$ in SVD. Rank - 2 is enforced by setting the smallest singular value to 0.
+`compute_camera_pose` computes poses (positions and orientations) in 3D space. The intrinsic matrix K includes information about the camera’s focal length, principal point.
+
+
+<img width="1069" alt="Screenshot 2023-12-30 at 3 07 26 AM" src="https://github.com/hardikkgupta/csci5561/assets/40640596/f259dff2-37bc-465b-84e5-de5c9ef32857">
