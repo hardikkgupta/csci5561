@@ -30,3 +30,28 @@ As written in Chapter 11, The least-squares solution for f is the singular vecto
 
 
 <img width="1069" alt="Screenshot 2023-12-30 at 3 07 26 AM" src="https://github.com/hardikkgupta/csci5561/assets/40640596/f259dff2-37bc-465b-84e5-de5c9ef32857">
+
+## Triangulation
+Given camera pose and correspondences, you will triangulate to reconstruct 3D points.
+```
+def triangulation(P1, P2, pts1, pts2)
+  ...
+  return pts3D
+```
+**Input**: $P1$ and $P2$ are two camera projection matrices $(R3 × 4)$. $pts1$ and $pts2$ are $n × 2$ matrices that specify the correspondence. <br>
+**Output**: $pts3D$ is $n × 3$ where each row specifies the 3D reconstructed point.
+
+The correspondence between points in the images helps establish a relationship between the 2D image coordinates and their 3D world coordinates. **Triangulation** calculates the intersection of the projection rays from each camera to find the 3D location of a point.
+An equation with $A**x** = 0$ can be composed of the form: <br>
+
+A = 
+[
+    xp^{3T} - p^{1T} \\
+    yp^{3T} - p^{2T} \\
+    x'p'^{3T} - p'^{1T} \\
+    y'p'^{3T} - p'^{2T}
+]
+
+The last column of **V** corresponds to the right singular vector associated with the smallest singular value. This vector represents the \textit{homogeneous coordinates} of the 3D point.
+
+<img width="665" alt="Screenshot 2023-12-30 at 9 55 36 AM" src="https://github.com/hardikkgupta/csci5561/assets/40640596/2209c24b-efb9-4ff0-8471-ced582c4d8bb">
