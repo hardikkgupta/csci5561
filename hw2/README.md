@@ -42,16 +42,40 @@ def triangulation(P1, P2, pts1, pts2)
 **Output**: $pts3D$ is $n × 3$ where each row specifies the 3D reconstructed point.
 
 The correspondence between points in the images helps establish a relationship between the 2D image coordinates and their 3D world coordinates. **Triangulation** calculates the intersection of the projection rays from each camera to find the 3D location of a point.
-An equation with $A**x** = 0$ can be composed of the form: <br>
+An equation with $Ax = 0$ can be composed of the form: <br>
 
+\vec{v} = \begin{bmatrix} X \\\ Y \end{bmatrix}
 A = 
-[
+$$ [
     xp^{3T} - p^{1T} \\
     yp^{3T} - p^{2T} \\
     x'p'^{3T} - p'^{1T} \\
     y'p'^{3T} - p'^{2T}
-]
+] $$
 
-The last column of **V** corresponds to the right singular vector associated with the smallest singular value. This vector represents the \textit{homogeneous coordinates} of the 3D point.
+The last column of **V** corresponds to the right singular vector associated with the smallest singular value. This vector represents the _homogeneous coordinates_ of the 3D point.
 
 <img width="665" alt="Screenshot 2023-12-30 at 9 55 36 AM" src="https://github.com/hardikkgupta/csci5561/assets/40640596/2209c24b-efb9-4ff0-8471-ced582c4d8bb">
+
+## Pose Disambiguation
+Given four configurations of relative camera pose and reconstructed points, you will find the best camera pose by choosing the configuration which leads to the most number of triangulated points in front of both cameras.
+```
+def disambiguate_pose(Rs, Cs, pts3Ds)
+    ...
+    return R, C, pts3D
+```  
+**Input**: Rs, Cs, pts3Ds are python lists of rotation matrices, camera centers and 3D reconstructed points respectively <br>
+**Output**: R, C, pts3D are the best camera rotation, center, and 3D reconstructed points. <br>
+Here we count out the number of **valid** points in the set and returns the number with highest count.
+
+## Stereo
+Given the disambiguated camera pose, you will implement dense stereo matching between two views based on given correspondences, i.e. on dense SIFT.
+```
+def compute_rectification(K, R, C)
+  ...
+  return H1, H2
+```
+**Input**: The relative camera pose ($R$ and $C$) and intrinsic parameter $K$. <br>
+**Output**: $H1$ and $H2$ are homographies ($R^{3×3}$) that rectify the left and right images such that the epipoles are at infinity.
+
+<img width="1286" alt="Screenshot 2023-12-30 at 10 36 04 AM" src="https://github.com/hardikkgupta/csci5561/assets/40640596/d393c9cb-c8dc-4b71-823a-3948a598a8ec">
